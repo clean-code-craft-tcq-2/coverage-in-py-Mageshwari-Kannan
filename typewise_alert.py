@@ -1,5 +1,5 @@
-send_email_receipent = { recepient  :  'a.b@c.com',
-						 message : {'TOO_LOW'  :  'Hi, the temperature is too low',
+send_email_receipent = { 'recepient'  :  'a.b@c.com',
+						 'message' : {'TOO_LOW'  :  'Hi, the temperature is too low',
 						 'TOO_HIGH' :  'Hi, the temperature is too high' } }
 
 def infer_breach(value, lowerLimit, upperLimit):
@@ -32,16 +32,16 @@ def IsbatteryCharValid(batteryChar):
 def GetBreachType(batteryChar, temperatureInC): 
 	if IsbatteryCharValid(batteryChar):
 		return classify_temperature_breach(batteryChar, temperatureInC)	
-	 else:
+	else:
 		return 	'ERROR' 
   
 def check_and_alert(alertTarget, batteryChar, temperatureInC):
   breachType = GetBreachType(batteryChar, temperatureInC) 
-	if breachType!='ERROR' :
-		alert = alertTarget(breachType)
-	else:
-		False 
-	return(breachType)
+  if breachType!='ERROR':
+    alert = alertTarget(breachType)
+  else:
+    False 
+  return(breachType)
 
 def send_to_controller(breachType):
 	header = 0xfeed 

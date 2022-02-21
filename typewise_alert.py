@@ -23,7 +23,7 @@ def classify_temperature_breach(coolingType, temperatureInC):
 			not_in_range = { 'lowerLimit' : 'Not in range', "upperLimit" : 'Not in range'}
 			return not_in_range
 
-    def IsbatteryCharValid(batteryChar): 
+def IsbatteryCharValid(batteryChar): 
 	batteryChar_types = ['PASSIVE_COOLING', 'HI_ACTIVE_COOLING', 'MED_ACTIVE_COOLING'] 
 	if batteryChar in batteryChar_types: 
 		return True 

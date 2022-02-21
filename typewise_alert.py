@@ -1,3 +1,6 @@
+send_email_receipent = { recepient  :  'a.b@c.com',
+						 message : {'TOO_LOW'  :  'Hi, the temperature is too low',
+						 'TOO_HIGH' :  'Hi, the temperature is too high' } }
 
 def infer_breach(value, lowerLimit, upperLimit):
   if value < lowerLimit:
@@ -8,39 +11,49 @@ def infer_breach(value, lowerLimit, upperLimit):
 
 
 def classify_temperature_breach(coolingType, temperatureInC):
-  lowerLimit = 0
-  upperLimit = 0
-  if coolingType == 'PASSIVE_COOLING':
-    lowerLimit = 0
-    upperLimit = 35
-  elif coolingType == 'HI_ACTIVE_COOLING':
-    lowerLimit = 0
-    upperLimit = 45
-  elif coolingType == 'MED_ACTIVE_COOLING':
-    lowerLimit = 0
-    upperLimit = 40
-  return infer_breach(temperatureInC, lowerLimit, upperLimit)
+	lowerLimit = 0
+	cooling_limit_dict = { 'PASSIVE_COOLING'    : 35 ,
+						   'HI_ACTIVE_COOLING'  : 45 , 
+						   'MED_ACTIVE_COOLING' :  40 }	
+	for cooling_limit in cooling_limit_dict.keys():
+		if cooling_value == coolingType : 
+			upperLimit = cooling_limit_dict[cooling_limit]
+			return infer_breach(temperatureInC, lowerLimit, upperLimit)
+		else :
+			not_in_range = { 'lowerLimit' : 'Not in range', "upperLimit" : 'Not in range'}
+			return not_in_range
 
+    def IsbatteryCharValid(batteryChar): 
+	batteryChar_types = ['PASSIVE_COOLING', 'HI_ACTIVE_COOLING', 'MED_ACTIVE_COOLING'] 
+	if batteryChar in batteryChar_types: 
+		return True 
+	return False 
 
+def GetBreachType(batteryChar, temperatureInC): 
+	if IsbatteryCharValid(batteryChar):
+		return classify_temperature_breach(batteryChar, temperatureInC)	
+	 else:
+		return 	'ERROR' 
+  
 def check_and_alert(alertTarget, batteryChar, temperatureInC):
-  breachType =\
-    classify_temperature_breach(batteryChar['coolingType'], temperatureInC)
-  if alertTarget == 'TO_CONTROLLER':
-    send_to_controller(breachType)
-  elif alertTarget == 'TO_EMAIL':
-    send_to_email(breachType)
-
+  breachType = GetBreachType(batteryChar, temperatureInC) 
+	if breachType!='ERROR' :
+		alert = alertTarget(breachType)
+	else:
+		False 
+	return(breachType)
 
 def send_to_controller(breachType):
-  header = 0xfeed
-  print(f'{header}, {breachType}')
+	header = 0xfeed 
+	command_to_controller = (f'{header}, {breachType}') 
+	print(command_to_controller) 
+	return(command_to_controller) 
 
+def Generate_email_content(breachtype, email_messages): 
+	return email_messages[breachtype] 
 
 def send_to_email(breachType):
-  recepient = "a.b@c.com"
-  if breachType == 'TOO_LOW':
-    print(f'To: {recepient}')
-    print('Hi, the temperature is too low')
-  elif breachType == 'TOO_HIGH':
-    print(f'To: {recepient}')
-    print('Hi, the temperature is too high')
+	mail_content = Generate_email_content(breachType, send_email_receipent['messages']) 
+	sending_email = f"To: {send_email_receipent['recepient']} : {mail_content}" 
+	print(sending_email) 
+	return(sending_email) 

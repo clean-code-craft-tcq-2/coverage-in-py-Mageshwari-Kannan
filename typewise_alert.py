@@ -31,7 +31,7 @@ def IsbatteryCharValid(batteryChar):
 def GetBreachType(batteryChar, temperatureInC): 
 	if IsbatteryCharValid(batteryChar):
 		return classify_temperature_breach(batteryChar, temperatureInC)	
-	 else:
+	else:
 		return 	'ERROR' 
 		
 def check_and_alert(alertTarget, batteryChar, temperatureInC):

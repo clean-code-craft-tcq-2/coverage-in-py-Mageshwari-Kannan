@@ -16,7 +16,7 @@ def classify_temperature_breach(coolingType, temperatureInC):
   elif upperLimit > 35 and upperLimit <= 45:
     coolingType = 'HI_ACTIVE_COOLING'
   elif upperLimit > 45 and upperLimit <= 40:
-    coolingType == 'MED_ACTIVE_COOLING':
+    coolingType = 'MED_ACTIVE_COOLING'
   return infer_breach(temperatureInC, lowerLimit, upperLimit)
 
 

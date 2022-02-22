@@ -5,6 +5,7 @@ def infer_breach(value, lowerLimit, upperLimit):
         return 'TOO_HIGH'
     return 'NORMAL'
 
+
 def coolingtype_range(coolingType):
   coolingType_dict={'PASSIVE_COOLING':{"lowerLimit":0,"upperLimit":35},'HI_ACTIVE_COOLING':{"lowerLimit":0,"upperLimit":45},'MED_ACTIVE_COOLING':{"lowerLimit":0,"upperLimit":40}}					   
   if coolingType in coolingType_dict.keys():
@@ -12,6 +13,7 @@ def coolingtype_range(coolingType):
   else:
     default={"lowerLimit":'Not in limits',"upperLimit":'Not in limits'}
     return(default) 
+
 
 def classify_temperature_breach(coolingType, temperatureInC):
   cooling_limits  = coolingtype_range(coolingType)
@@ -21,19 +23,22 @@ def classify_temperature_breach(coolingType, temperatureInC):
   else:
     return breach
 
+
 def check_and_alert(alertTarget, batteryChar, temperatureInC):
-  breachType =\
-  classify_temperature_breach(batteryChar['coolingType'], temperatureInC)
+  breachType = classify_temperature_breach(batteryChar, temperatureInC)
+    classify_temperature_breach(batteryChar['coolingType'], temperatureInC)
   if alertTarget == 'TO_CONTROLLER':
-    send_to_controller(breachType)
+    command = send_to_controller(breachType)
   elif alertTarget == 'TO_EMAIL':
-    send_to_email(breachType)
-
-
+    command = send_to_email(breachType)
+   return command
+    
+    
 def send_to_controller(breachType):
   header = 0xfeed
+  return(f'{header}, {breachType}')
   print(f'{header}, {breachType}')
-
+  
 
 def send_to_email(breachType):
   recepient = "a.b@c.com"

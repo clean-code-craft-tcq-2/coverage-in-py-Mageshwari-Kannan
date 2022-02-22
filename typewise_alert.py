@@ -1,4 +1,3 @@
-
 def infer_breach(value, lowerLimit, upperLimit):
   if value < lowerLimit:
     return 'TOO_LOW'
@@ -6,15 +5,20 @@ def infer_breach(value, lowerLimit, upperLimit):
     return 'TOO_HIGH'
   return 'NORMAL'
 
+def coolingtype_range(coolingType):
+	lowerLimit = 0
+    coolingType_dict = {   'PASSIVE_COOLING'    :  {'upperLimit' : 35},
+                           'HI_ACTIVE_COOLING'  :  {'upperLimit' : 45},
+                           'MED_ACTIVE_COOLING' :  {'upperLimit' : 40}	}
+						   
+    return(coolingType_dict[cooling_Type]) if cooling_Type in coolingType_dict.keys()
+    return({'lowerLimit' : 'Not in limits', 'upperLimit' : 'Not in limits'}) if cooling_Type not in coolingType_dict.keys()  
 
 def classify_temperature_breach(coolingType, temperatureInC):
-	lowerLimit = 0
-	coolingType_dict={'PASSIVE':35,'HI_ACTIVE':45,'MED_ACTIVE':40}
-	for cooling_type in coolingType_dict.keys(): 
-		if cooling_type==coolingType: 
-			upperLimit=coolingType_dict[cooling_type] 
-	breachType=infer_breach(temperatureInC,lowerLimit,upperLimit) 
-	return breachType 
+    cooling_limits  = coolingtype_range(coolingType)
+	breach = infer_breach(temperatureInC, limits['lowerLimit'], limits['upperLimit'])
+    return breach if 'Not in limits' not in cooling_limits.values():
+    return "WARNING !!!" if 'Not in limits' in cooling_limits.values(): 
 
 
 def check_and_alert(alertTarget, batteryChar, temperatureInC):

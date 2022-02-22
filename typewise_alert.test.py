@@ -16,7 +16,7 @@ class TypewiseTest(unittest.TestCase):
     def test_classify_temperature_breach_for_MED_ACTIVE_COOLING(self):
         self.assertTrue(typewise_alert.coolingtype_range('MED_ACTIVE_COOLING') == {"lowerLimit" : 0, "upperLimit" : 40})
     def test_classify_temperature_breachs_for_OUT_OF_LIMITS(self):
-        self.assertTrue(typewise_alert.coolingtype_range('OUT_OF_LIMITS) == {"lowerLimit" : 'Not in limits', "upperLimit" : 'Not in limits'})
+        self.assertTrue(typewise_alert.coolingtype_range('OUT_OF_LIMITS') == {"lowerLimit" : 'Not in limits', "upperLimit" : 'Not in limits'})
         
     def test_classify_temperature_breach_for_TOO_LOW(self):
         self.assertTrue(typewise_alert.classify_temperature_breach('PASSIVE_COOLING', -50)=='TOO_LOW') 

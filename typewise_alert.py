@@ -17,7 +17,7 @@ def classify_temperature_breach(coolingType, temperatureInC):
     coolingType = 'HI_ACTIVE_COOLING'
   elif upperLimit > 45 and upperLimit <= 40:
     coolingType = 'MED_ACTIVE_COOLING'
-  return infer_breach(temperatureInC, lowerLimit, upperLimit)
+  return coolingType
 
 
 def check_and_alert(alertTarget, batteryChar, temperatureInC):

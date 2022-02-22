@@ -15,8 +15,8 @@ def coolingtype_range(coolingType):
 def classify_temperature_breach(coolingType, temperatureInC):
 	cool_range = coolingtype_range(coolingType)
 	for cooling_type in cool_range.keys(): 
-	if cooling_type==coolingType: 
-		upperLimit=cool_range[cooling_type] 
+		if cooling_type==coolingType: 
+			upperLimit=cool_range[cooling_type] 
 	breachType=infer_breach(temperatureInC,lowerLimit,upperLimit) 
 	return breachType 
 

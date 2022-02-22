@@ -9,10 +9,10 @@ def infer_breach(value, lowerLimit, upperLimit):
 
 
 def coolingtype_range(coolingType):
-	lowerLimit = 0
 	coolingType_dict={"PASSIVE":35,"HI_ACTIVE":45,"MED_ACTIVE":40}
 
 def classify_temperature_breach(coolingType, temperatureInC):
+	lowerLimit = 0
 	cool_range = coolingtype_range(coolingType)
 	for cooling_type in cool_range.keys(): 
 		if cooling_type==coolingType: 

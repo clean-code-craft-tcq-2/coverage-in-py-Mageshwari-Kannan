@@ -23,9 +23,7 @@ class TypewiseTest(unittest.TestCase):
     def test_classify_temperature_breach_for_NORMAL(self):
         self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', 36)=='NORMAL')  
     def test_classify_temperature_breach_for_TOO_HIGH(self):
-        self.assertTrue(typewise_alert.classify_temperature_breach('HI_ACTIVE_COOLING', 47)=='TOO_HIGH')    
-    def test_classify_temperature_breach_for_TOO_HIGH(self):
-        self.assertTrue(typewise_alert.classify_temperature_breach('NO_COOLING', 80)=='WARNING')
+        self.assertTrue(typewise_alert.classify_temperature_breach('HI_ACTIVE_COOLING', 47)=='TOO_HIGH') 
 
         
 if __name__ == '__main__':

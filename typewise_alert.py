@@ -6,8 +6,7 @@ def infer_breach(value, lowerLimit, upperLimit):
   return 'NORMAL'
 
 def coolingtype_range(coolingType):
-  lowerLimit=0
-  coolingType_dict={'PASSIVE_COOLING':{"upperLimit":35},'HI_ACTIVE_COOLING':{"upperLimit":45},'MED_ACTIVE_COOLING':{"upperLimit":40}}					   
+  coolingType_dict={'PASSIVE_COOLING':{"lowerLimit":0,"upperLimit":35},'HI_ACTIVE_COOLING':{"lowerLimit":0"upperLimit":45},'MED_ACTIVE_COOLING':{"lowerLimit":0"upperLimit":40}}					   
   if coolingType in coolingType_dict.keys():
     return(coolingType_dict[coolingType]) 
   else:

@@ -49,7 +49,7 @@ class TypewiseTest(unittest.TestCase):
     def test_check_and_alert_to_controller_MED_ACTIVE_COOLING_NORMAL(self):       
         self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER', 'MED_ACTIVE_COOLING',30)==f'{0xfeed}, NORMAL')     
     def test_check_and_alert_to_controller_MED_ACTIVE_COOLING_NORMAL(self):       
-        self.assertTrue(typewise_alert.check_and_alert('IMPROPER', 'MED_ACTIVE_COOLING',30)==f'{0xfeed}, NOT_APPLICABLE')    
+        self.assertFalse(typewise_alert.check_and_alert('IMPROPER', 'MED_ACTIVE_COOLING',30)==f'{0xfeed}, NOT_APPLICABLE')    
         
 if __name__ == '__main__':
   unittest.main()

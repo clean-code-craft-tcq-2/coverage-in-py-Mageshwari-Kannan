@@ -28,11 +28,13 @@ def check_and_alert(alertTarget, batteryChar, temperatureInC):
   breachType = classify_temperature_breach(batteryChar, temperatureInC)
   if alertTarget == 'TO_CONTROLLER':
     command = send_to_controller(breachType)
+    return command
   elif alertTarget == 'TO_EMAIL':
     command = send_to_email(breachType)
-  return command
-    
-    
+    return command
+  else:  
+    return "NOT_APPLICABLE"
+
 def send_to_controller(breachType):
   header = 0xfeed
   return(f'{header}, {breachType}')

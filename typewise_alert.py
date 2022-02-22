@@ -44,8 +44,10 @@ def send_to_controller(breachType):
 def send_to_email(breachType):
   recepient = "a.b@c.com"
   if breachType == 'TOO_LOW':
-    print(f'To: {recepient}')
-    print('Hi, the temperature is too low')
+    print(f'To: {recepient}', 'Hi, the temperature is too low')
+    return(f'To: {recepient}', 'Hi, the temperature is too low')
   elif breachType == 'TOO_HIGH':
-    print(f'To: {recepient}')
-    print('Hi, the temperature is too high')
+    print(f'To: {recepient}', 'Hi, the temperature is too high')
+    return(f'To: {recepient}', 'Hi, the temperature is too high')
+  else:
+        return(f'To: {recepient}', 'NOT_APPLICABLE')

@@ -16,7 +16,7 @@ def coolingtype_range(coolingType):
 
 def classify_temperature_breach(coolingType, temperatureInC):
   cooling_limits  = coolingtype_range(coolingType)
-  breach = infer_breach(temperatureInC, limits['lowerLimit'], limits['upperLimit'])	
+  breach = infer_breach(temperatureInC, cooling_limits['lowerLimit'], cooling_limits['upperLimit'])	
   if 'Not in limits' in cooling_limits.values():
     return "WARNING !!!" 
   else:

@@ -10,7 +10,7 @@ def coolingtype_range(coolingType):
   if coolingType in coolingType_dict.keys():
     return(coolingType_dict[coolingType]) 
   else:
-    default={"lowerLimit::'Not in limits',"upperLimit":'Not in limits'}
+    default={"lowerLimit":'Not in limits',"upperLimit":'Not in limits'}
     return(default) 
 
 def classify_temperature_breach(coolingType, temperatureInC):

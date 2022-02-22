@@ -57,19 +57,19 @@ class TypewiseTest(unittest.TestCase):
         self.assertTrue(typewise_alert.send_to_email('TOO_HIGH') ==f'To: a.b@c.com', 'Hi, the temperature is too high')  
         
     def test_check_and_alert_trigger_email_notification_PASSIVE_COOLING_TOO_LOW(self):
-        self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL',-6,'PASSIVE_COOLING') == f'To: a.b@c.com', 'Hi, the temperature is too low')
+        self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL','PASSIVE_COOLING',-6) == f'To: a.b@c.com', 'Hi, the temperature is too low')
     def test_check_and_alert_trigger_email_notification_PASSIVE_COOLING_TOO_HIGH(self):
-        self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL',110,'PASSIVE_COOLING') == f'To: a.b@c.com', 'Hi, the temperature is too high')
+        self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL','PASSIVE_COOLING',110) == f'To: a.b@c.com', 'Hi, the temperature is too high')
     def test_check_and_alert_trigger_email_notification_HI_ACTIVE_COOLING_TOO_LOW(self):
-        self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL',-9,'HI_ACTIVE_COOLING') == f'To: a.b@c.com', 'Hi, the temperature is too low')
+        self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL','HI_ACTIVE_COOLING',-9) == f'To: a.b@c.com', 'Hi, the temperature is too low')
     def test_check_and_alert_trigger_email_notification_HI_ACTIVE_COOLING_TOO_HIGH(self):
-        self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL',200,'HI_ACTIVE_COOLING') == f'To: a.b@c.com', 'Hi, the temperature is too high')
+        self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL','HI_ACTIVE_COOLING',200) == f'To: a.b@c.com', 'Hi, the temperature is too high')
     def test_check_and_alert_trigger_email_notification_MED_ACTIVE_COOLING_TOO_LOW(self):
-        self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL',-50,'MED_ACTIVE_COOLING') == f'To: a.b@c.com', 'Hi, the temperature is too low')
+        self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL','MED_ACTIVE_COOLING',-50) == f'To: a.b@c.com', 'Hi, the temperature is too low')
     def test_check_and_alert_trigger_email_notification_MED_ACTIVE_COOLING_TOO_HIGH(self):
-        self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL',125,'MED_ACTIVE_COOLING') == f'To: a.b@c.com', 'Hi, the temperature is too high') 
+        self.assertTrue(typewise_alert.check_and_alert('TO_EMAIL','MED_ACTIVE_COOLING',125) == f'To: a.b@c.com', 'Hi, the temperature is too high') 
     def test_check_and_alert_trigger_email_notification_MED_ACTIVE_COOLING_IMPROPER(self):
-        self.assertTrue(typewise_alert.check_and_alert('IMPROPER',186,'MED_ACTIVE_COOLING') == f'To: a.b@c.com', 'NOT_APPLICABLE')  
+        self.assertTrue(typewise_alert.check_and_alert('IMPROPER','MED_ACTIVE_COOLING',186) == f'To: a.b@c.com', 'NOT_APPLICABLE')  
         
 if __name__ == '__main__':
   unittest.main()

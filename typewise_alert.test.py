@@ -22,8 +22,6 @@ class TypewiseTest(unittest.TestCase):
         self.assertTrue(typewise_alert.classify_temperature_breach('PASSIVE_COOLING', -30)=='TOO_LOW')   
     def test_classify_temperature_breach_for_TOO_HIGH(self):
         self.assertTrue(typewise_alert.classify_temperature_breach('HI_ACTIVE_COOLING', 50)=='TOO_HIGH')
-    def test_classify_temperature_breach_for_WRONG_PARAM(self):
-        self.assertTrue(typewise_alert.classify_temperature_breach('WRONG_COOLING', 30)=='WARNING')
 
         
 if __name__ == '__main__':

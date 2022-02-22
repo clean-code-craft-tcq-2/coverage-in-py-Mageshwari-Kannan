@@ -2,11 +2,11 @@ import unittest
 import typewise_alert
 
 class TypewiseTest(unittest.TestCase):
-    def test_infers_breach_as_per_limits(self):
+    def test_infers_breach_as_per_low_limits(self):
         self.assertTrue(typewise_alert.infer_breach(20, 50, 100) == 'TOO_LOW')
-    def test_infers_breach_as_per_limits(self):
+    def test_infers_breach_as_per_high_limits(self):
         self.assertTrue(typewise_alert.infer_breach(110, 50, 100) == 'TOO_HIGH')
-    def test_infers_breach_as_per_limits(self):
+    def test_infers_breach_as_per_normal_limits(self):
         self.assertTrue(typewise_alert.infer_breach(80, 50, 100) == 'NORMAL')
         
     def test_classify_temperature_breach_for_PASSIVE_COOLING(self):
@@ -24,7 +24,22 @@ class TypewiseTest(unittest.TestCase):
         self.assertTrue(typewise_alert.classify_temperature_breach('MED_ACTIVE_COOLING', 36)=='NORMAL')  
     def test_classify_temperature_breach_for_TOO_HIGH(self):
         self.assertTrue(typewise_alert.classify_temperature_breach('HI_ACTIVE_COOLING', 47)=='TOO_HIGH') 
+        
+    def test_send_to_controller_too_high_breachType(self):
+        self.assertTrue(typewise_alert.send_to_controller('TOO_HIGH') == f'{0xfeed}, TOO_HIGH')
+    def test_send_to_controller_too_low_breachType(self):
+        self.assertTrue(typewise_alert.send_to_controller('TOO_LOW') == f'{0xfeed}, TOO_LOW')
 
+    def test_check_and_alert_to_controller(self):
+        self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER',-5,"PASSIVE_COOLING") == f'{0xfeed}, TOO_LOW')
+        self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER', 100, "PASSIVE_COOLING")==f'{0xfeed}, TOO_HIGH')
+        self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER', 16, "PASSIVE_COOLING")==f'{0xfeed}, NORMAL')
+        self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER',-18, "HI_ACTIVE_COOLING")==f'{0xfeed}, TOO_LOW')
+        self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER', 260, "HI_ACTIVE_COOLING")==f'{0xfeed}, TOO_HIGH')
+        self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER', 40, "HI_ACTIVE_COOLING")==f'{0xfeed}, NORMAL')
+        self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER', -28, "MED_ACTIVE_COOLING")==f'{0xfeed}, TOO_LOW')
+        self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER', 136, "MED_ACTIVE_COOLING")==f'{0xfeed}, TOO_HIGH')
+        self.assertTrue(typewise_alert.check_and_alert('TO_CONTROLLER',30, "MED_ACTIVE_COOLING")==f'{0xfeed}, NORMAL')        
         
 if __name__ == '__main__':
   unittest.main()

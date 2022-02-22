@@ -52,9 +52,9 @@ class TypewiseTest(unittest.TestCase):
         self.assertFalse(typewise_alert.check_and_alert('IMPROPER', 'MED_ACTIVE_COOLING',30)==f'{0xfeed}, NOT_APPLICABLE')
         
     def test_send_to_email_TOO_LOW(self):
-         self.assertTrue(typewise_alert.send_to_email('TOO_LOW') ==f'To: a.b@c.com', 'Hi, the temperature is too low')
+         self.assertTrue(typewise_alert.send_to_email('TOO_LOW') ==f'To: a.b@c.com, Hi, the temperature is too low')
     def test_send_to_email_TOO_HIGH(self):
-        self.assertTrue(typewise_alert.send_to_email('TOO_HIGH') ==f'To: a.b@c.com', 'Hi, the temperature is too high')  
+        self.assertTrue(typewise_alert.send_to_email('TOO_HIGH') ==f'To: a.b@c.com, Hi, the temperature is too high')  
 
         
 if __name__ == '__main__':

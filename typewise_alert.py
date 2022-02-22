@@ -1,9 +1,9 @@
 def infer_breach(value, lowerLimit, upperLimit):
-  if value < lowerLimit:
-    return 'TOO_LOW'
-  if value > upperLimit:
-    return 'TOO_HIGH'
-  return 'NORMAL'
+    if value < lowerLimit:
+        return 'TOO_LOW'
+    if value > upperLimit:
+        return 'TOO_HIGH'
+    return 'NORMAL'
 
 def coolingtype_range(coolingType):
   coolingType_dict={'PASSIVE_COOLING':{"lowerLimit":0,"upperLimit":35},'HI_ACTIVE_COOLING':{"lowerLimit":0,"upperLimit":45},'MED_ACTIVE_COOLING':{"lowerLimit":0,"upperLimit":40}}					   

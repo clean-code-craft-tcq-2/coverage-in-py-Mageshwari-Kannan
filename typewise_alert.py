@@ -19,7 +19,7 @@ def classify_temperature_breach(coolingType, temperatureInC):
   if 'Not in limits' not in cooling_limits.values():
     return breach
   else:
-    return 'WARNING' 
+    return "WARNING" 
 
 def check_and_alert(alertTarget, batteryChar, temperatureInC):
   breachType =\

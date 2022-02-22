@@ -30,7 +30,7 @@ def check_and_alert(alertTarget, batteryChar, temperatureInC):
     command = send_to_controller(breachType)
   elif alertTarget == 'TO_EMAIL':
     command = send_to_email(breachType)
-   return command
+  return command
     
     
 def send_to_controller(breachType):

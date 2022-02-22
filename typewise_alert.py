@@ -8,7 +8,7 @@ def infer_breach(value, lowerLimit, upperLimit):
     return 'NORMAL'
 
 
-def classify_temperature_breach(coolingType, temperatureInC):
+def classify_temperature_breach(coolingType, value):
 	lowerLimit = 0
 	coolingType_dict={'PASSIVE':35,'HI_ACTIVE':45,'MED_ACTIVE':40}
 	for cooling_type in coolingType_dict.keys(): 

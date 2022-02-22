@@ -12,24 +12,18 @@ class TypewiseTest(unittest.TestCase):
     def test_classify_temperature_breach_for_PASSIVE_COOLING(self):
         self.assertTrue(typewise_alert.classify_temperature_breach(-2, 'PASSIVE') == 'TOO_LOW')
     def test_classify_temperature_breach_for_PASSIVE_COOLING(self):
-        self.assertTrue(typewise_alert.classify_temperature_breach(100, 'PASSIVE') == 'TOO_HIGH')	
-    def test_classify_temperature_breach_for_PASSIVE_COOLING(self):
-        self.assertTrue(typewise_alert.classify_temperature_breach(10, 'PASSIVE') == 'NORMAL')	
+        self.assertTrue(typewise_alert.classify_temperature_breach(100, 'PASSIVE') == 'TOO_HIGH')
         
     def test_classify_temperature_breach_for_HI_ACTIVE_COOLING(self):
         self.assertTrue(typewise_alert.classify_temperature_breach(-15, 'HI_ACTIVE') == 'TOO_LOW')
     def test_classify_temperature_breach_for_HI_ACTIVE_COOLING(self):
         self.assertTrue(typewise_alert.classify_temperature_breach(120, 'HI_ACTIVE') == 'TOO_HIGH')
-    def test_classify_temperature_breach_for_HI_ACTIVE_COOLING(self):
-        self.assertTrue(typewise_alert.classify_temperature_breach(26, 'HI_ACTIVE') == 'NORMAL')
 
         
     def test_classify_temperature_breach_for_MED_ACTIVE_COOLING(self):
         self.assertTrue(typewise_alert.classify_temperature_breach(-5, 'MED_ACTIVE') == 'TOO_LOW')		
     def test_classify_temperature_breach_for_MED_ACTIVE_COOLING(self):
-        self.assertTrue(typewise_alert.classify_temperature_breach(110, 'MED_ACTIVE') == 'TOO_HIGH')	
-    def test_classify_temperature_breach_for_MED_ACTIVE_COOLING(self):
-        self.assertTrue(typewise_alert.classify_temperature_breach(20, 'MED_ACTIVE') == 'NORMAL')	
+        self.assertTrue(typewise_alert.classify_temperature_breach(110, 'MED_ACTIVE') == 'TOO_HIGH')
         
 if __name__ == '__main__':
   unittest.main()

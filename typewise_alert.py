@@ -51,3 +51,5 @@ def send_to_email(breachType):
     return(f'To: {recepient}, Hi, the temperature is too high')
   else:
         return(f'To: {recepient}, NOT_APPLICABLE')
+    
+    
